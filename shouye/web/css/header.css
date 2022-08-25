@@ -1,0 +1,202 @@
+body{
+	margin:0;
+	padding:0;
+	border:0px;
+	background-color: #F2F2F2;
+}
+/*
+#allnav{
+	position:fixed;
+	top:0;
+	width:100%;
+	z-index:100;
+} */
+header{
+	position:fixed;
+	width:100%;
+	height: 68px;
+	display: flex;
+	border-bottom: 1px solid #f1f1f1;
+	background-color: white;
+}
+.logo{
+	width: auto;
+	height: 22px;
+	margin-left: 15px;
+	margin-top: 25px;
+}
+.logo,.leftside,.rightside{
+	list-style: none;
+	display: flex;
+	align-items: center;
+}
+.leftside{
+	float: left;
+	margin:16px 0 0 0 ;
+}
+.rightside{
+	margin:10px 0 0 0;
+	float: right;
+	height:42px;
+	padding-left:180px;
+}
+.leftside li,.rightside li{
+	float: flex;
+	display: inline;
+	margin: 10px;
+}
+.leftside li a{
+	font-size: 14px;
+	/* 设置下划线与文字之间的距离 */
+	padding-bottom: 20px;  
+}
+.leftside li a:hover{
+	/* 设置下边框 */
+	border-bottom:2px solid rgb(0,127,255); 
+}
+.leftside li a:link{
+	color:#687079;
+}
+.leftside li a:visited{
+	color:black;
+}
+/* .leftside :first-child a{
+	color: #1e80ff;
+} */
+.leftside :first-child a:hover{
+	color: black;
+}
+.leftside :first-child a{
+	color: rgb(0,127,255);
+}
+a{
+	text-decoration: none;
+}    
+.rightside li{
+	height:40px;
+}
+#search-box{
+	width: 280px;
+	display: flex;
+	padding: 9px 0;
+	position:relative;
+	left:0px;
+	top:0px;
+	/* margin-right:8px; */
+}
+#searchInput{
+	width:280px;
+	border-radius:5px;
+	border:1px solid lightgrey;
+	padding:5px 6px;
+	margin:0;
+	font-size:15px;
+}
+#searchInput:hover{
+	outline:none;
+	border:2px solid lightgrey;
+}
+#searchInput:focus{
+	outline:none;
+	border:1px solid #1CA4FF;
+}
+#searchIcon{
+	width: 14px;
+	height:16px;
+	padding:5px 10px;
+	margin: 5px 0px 5px -38px;
+	float:right;
+	background-color: #f4f5f5;
+}
+#chuangzao{
+	display: flex;
+	margin-top:5px;
+}
+#btn{
+	width: 90px;
+	height: 35px;
+	color: white;
+	padding: 0;
+	font-size: 14px;
+	background-color: rgb(2, 133, 255);
+	border:none;
+}
+#btn:hover{
+	background-color: #416bf2;
+}
+#btn-bottom{
+	width:30px;
+	height:35px;
+	background-color: rgb(2, 133, 255);
+	border:none;
+	border-left:1px solid lightgrey;
+	padding:5px 5px 5px 8px;
+}
+#btn-bottom:hover{
+	background-color: #416bf2;
+}
+#arrow-bottom{
+	width: 0;
+	height:0;
+	border-top: 5px solid white; /* 下边框的长度|高,以及背景色 */  
+	border-left: 5px solid transparent;  /* 左边框的宽 */  
+	border-right: 5px solid transparent; /* 右边框的宽 */  
+	position:absolute;
+}
+.arrow-ul{
+	width:100px;
+	height:100px;
+	list-style:none;
+	padding:0;
+	margin:0;
+	position:relative;
+	z-index: 200;
+	top: 12px;
+	left:-100px;
+	border:2px solid lightgrey;
+	background-color: white;
+	display: none;
+}
+.arrow-ul li{
+	width:70px;
+	margin:0;
+	padding:8px 15px;
+	font-size:14px;
+}
+.arrow-ul li:hover{
+	background-color: #D3D3D3;
+}
+#vip{
+	text-align: center;
+	display: flex;
+	margin:12px 6px;
+}
+#vip-title{
+	margin: 5px;
+	color: #86909c;
+	font-size:15px;
+}
+#remindlogo img{
+	width:30px;
+	overflow: hidden;
+}
+#remind a :hover{
+	transform: translateY(-50px);
+	/* img先向y轴负方向偏移50px（隐藏了），然后经过滤镜处理颜色的“新”图片再向y轴正方向偏移50px*/
+	filter: drop-shadow(grey 0 50px);
+}
+#individual{
+	width: 34px;
+	border-radius: 20px;
+}
+#login{
+	width:70px;
+	height:35px;
+	background-color: #eaf7ff;
+	color:#1CA4FF;
+	font-size:15px;
+	border:1px solid #1CA4FF;
+	border-radius:5px;
+	margin:10px 10px 0 0;
+    padding:0;
+}

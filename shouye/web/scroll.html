@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <meta charset="UTF-8">
+    <title>滚动简易加载</title>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <style>
+        *{
+			margin: 0;
+			padding: 0
+		}
+		body{
+			width: 1000px;
+			margin: 0;
+			font-family: '微软雅黑' ;
+			font-size: 15px;
+			background-color: #f4f5f5;
+			overflow-y: scroll;
+			overflow-x:hidden;
+		}
+		.box{ 
+			width: 690px;
+			height: auto;
+			margin-top: 0px;
+			margin-left: 0px;
+			position: absolute;
+			background-color: white;
+			padding-left: 15px;
+		}
+		h3{
+			font-size: 16px;
+			color:black;
+			width:500px;
+		}
+		/* .s{
+			width:400px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid gainsboro;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size:13px
+		} */
+		.span{
+			border-bottom: 1px solid gainsboro;
+			width:660px;
+			padding-bottom: 0px;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size:14px;
+			color:grey;
+		}
+
+		ul li{
+			/* margin-left: 20px; */
+			margin-top: 20px;
+			font-size: 12.5px;
+			float: left;
+		}
+		.img1{
+			float: right;
+			width: 100px;
+			height: 80px;
+			margin-top: -95px;
+			padding-right:30px;
+		}
+		.c{
+			color:lightgrey;
+			/* margin-top:-10px; */
+			margin-bottom:5px;
+		}
+		.d{
+			width: 550px;
+			height: 50px;
+			margin: 0;     
+			/* 1.这个单词的意思是如果文字显示不开强制一行显示，不自动换行*/
+			white-space: nowrap;
+			/* 2.溢出部分隐藏起来 */
+			overflow: hidden;
+			/* 3.文字溢出的时候省略号来展示 */
+			text-overflow: ellipsis;
+		}
+		.box-list{
+			padding:20px 0px;
+			width:700px;
+			height:50px;
+			text-align: left;
+			margin-bottom:30px;
+			background: #fff；
+		}
+		.box-list i{
+			margin: 2px 5px 0 0;
+			font-size: 12.5px;
+			font-family:'黑体';
+			color:lightblack;
+			float: left;
+		}
+		 .box-list ii{
+			margin-top: -40px;
+			font-size: 12.5px;
+			font-family:'黑体';
+			color:grey;
+		}
+		.box-list h3{
+			margin-top:8px;
+		}
+		.box-list shu{
+			color:lightgrey;
+			margin-left: 5px;
+		}  
+		.iii{ 
+			color:grey;
+		}
+		
+		
+		ul{
+		    list-style-type: none;
+		}
+		.a{
+		    text-decoration: none;
+		    color:grey;
+			padding:20px;
+		}
+		.a:first-child {
+		    color: rgb(0,127,255) ;
+		}
+		.container-left{
+		    width: 690px;
+		    height: auto;
+		    background-color: white;
+		    /* padding-right: 15px; */
+		    padding-left: 15px;
+			margin-top:20px;
+			font-family: '微软雅黑', Courier, monospace;
+			font-size: 15px;
+			border:none;
+			outline:none;
+		}
+		.container-left-top{
+		    width: 660px;
+		    height: 40px;
+		    list-style-type: none;
+		    border-bottom: 1px solid gainsboro;
+		}
+		.container-left-top ul li{
+			margin:0;
+		    line-height: 40px;
+		}
+		.container-left-top ul li a:hover{
+		    color: rgb(0,127,255);
+		}
+		.container-left li a{
+		    padding-left: 20px;
+		}
+		.shu{
+			color:lightgrey;
+		    margin: 0 5px 0 5px;
+		}
+		
+		/* #test{
+			width:250px;
+			height:500px;
+			position:relative;
+			left:800px;
+			background-color: red;
+		} */
+		
+		.main-right{
+			width: 240px;
+			position:absolute;
+			/* top:120px; */
+			top:20px;
+			left:730px;
+			padding-right:100px;
+			/* right: 100px; */
+		}
+		#right-top{
+			background-color: white;
+			position:relative;
+			height:100px;
+		}
+		#signIn{
+			display:inline;
+			position:relative;
+		}
+		#signIn img{
+			width:30px;
+			margin:10px;
+			float:left;
+		}
+		#time{
+			font-size:18px;
+			float:left;
+			margin:15px 8px;
+		}
+		#right-top a{
+			text-align:center;
+			border:1px solid #1ca4ff;
+			color:#1ca4ff;
+			font-size:14px;
+			border-radius:15px;
+			padding:6px 10px;
+			margin-top:15px;
+			margin-right:10px;
+			float:right;
+		}
+		#right-top a:hover{
+			background-color: #d2f1ff;
+		}
+		.lightUp{
+			float:left;
+			font-size:14px;
+			color:#86909C;
+			margin-left:20px;
+		}
+		#pay{
+			right:150px;
+			margin:0;
+			padding:0;
+			/* left:860px; */
+			margin-top:15px;
+			/* float:right; */
+		}
+		#pay img{
+			width: 240px;
+		}
+		#code{
+			background-color: white;
+			width:240px;
+			right:150px;
+			margin-top:10px;
+			float:right;
+		}
+		#code img{
+			width:50px;
+			padding:15px;
+			float:left;
+		}
+		#content{
+			padding:15px;
+		}
+		#code-title{
+			font-size:14px;
+			padding-bottom:15px;
+		}
+		#code-slogan{
+			font-size:12px;
+			color:#86909C;
+		}
+		#author-list,#right-bottom{
+			width:240px;
+			right:150px;
+			margin-top:15px;
+			float:right;
+		}
+		#list-title{
+			position:absolute;
+			background-color: white;
+			width:200px;
+			padding: 10px 20px;
+			height:20px;
+			font-size:14px;
+			border-bottom:2px solid #F2F2F2;
+			display:flex;
+		}
+		#list-title img{
+			width:15px;
+			height:18px;
+			padding-top:2px;
+			padding-right:5px;
+		}
+		#list-content{
+			width:240px;
+			height:250px;
+			margin:10px 0;
+			background-color: white;
+		}
+		#list-content li{
+			margin:14px 5px;
+			height:40px;
+		}
+		.author-img{
+			width:40px;
+			border-radius:35px;
+			float:left;
+			position:relative;
+			top:35px;
+			left:10px;
+		}
+		.author-title{
+			float: left;
+			margin:30px 0 5px 20px;
+		}
+		.title1{
+			font-size:15px;
+			padding:5px 0;
+		}
+		.title2{
+			color:#B2BAC2;
+		}
+		#right-bottom ul{
+			list-style:none;
+			background-color: white;
+			font-size:14px;
+			padding:5px;
+			margin:0;
+			height:235px;
+		}
+		#right-bottom ul li{
+			display:inline-block;
+		}
+		#right-bottom ul li img{
+			width:35px;
+			float:left;
+			padding:5px;
+			margin:6px;
+		}
+		#right-bottom ul li div{
+			float:right;
+			padding:16px 40px 16px 5px;
+		}
+		#right-bottom ul li:hover{
+			width:100%;
+			background-color: #F2F2F2;
+		}
+		#right-bottom ul li a:link{
+			color:black;
+		}
+		a{
+			text-decoration: none;
+		} 
+		
+</style>
+</head>
+
+<script type="text/javascript">
+	window.onload = function(){
+		// 显示当前时间段
+		var time = document.getElementById("time");
+		var now=new Date();    //获取当前时间
+		var hour=now.getHours();//获取当前小时数
+		if(hour<12){
+			time.innerHTML = "早上好！";
+		}else if(hour>=12 && hour<18){
+			time.innerHTML = "下午好！";
+		}else{
+			time.innerHTML = "晚上好！";
+		}
+	}
+	
+	
+    $(function () {
+        var data = [
+    		{
+    			"name": "天王盖地虎",
+    			"startTime": "2天前",
+    			"title": "稀土开发者大会出品人集结完毕，5折购票火热进行中!",
+    			"content": "2022年4月10-11日，由稀土掘金开发者社区主办的首届 稀土开发者大会 将于北京盛大开幕。目前 14 大热门技术专题出品人全部集结完毕" ,
+    			"photo":"1.awebp"
+    		},
+    		{
+    			"name": "掘金酱",
+    			"startTime": "2天前",
+    			"title": "钉钉面试指南",
+    			
+    			"content": "最近用团队的账号发了一篇文章专有钉钉前端面试指南，初衷是希望给大家传递一些可能没有接触过的知识，其中某些知识可能也超出了前端的范畴",
+				"photo":"2.awebp",
+			},
+    		{
+    			"name": "锄日当午",
+    			"startTime": "1天前",
+    			"title": "Node实现微信机器人，最新可用。实现个人微信收款指南！",
+    			"content": "所以你们还觉得前端不需要学docker吗？需要的可以去翻本喵的docker极速入门文章，作为一个开发者，你可以使用 Wechaty 轻松地建立你的机器人",
+				"photo":"3.awebp"
+    		},
+    		{
+    			"name": "字节前端",
+    			"startTime": "1天前",
+    			"title": "第四届字节青春-走进前端",
+    			"content": "由于文章字数限制，很多题目无法详尽和深入回答(纯粹是懒，就是想一晚上赶出来文章，嘿!)，本人也只是简略写一下，而且非标准答案，比如问浏览器URL请求流程，那至少能跟面试官扯几个小时",
+				"photo":"4.webp"
+    		},
+    		{
+    			"name": "白杨",
+    			"startTime": "1天前",
+    			"title": "深入理解JVM虚拟机，终结操作！",
+    			"content": "虽迟但到，今天就来继续给大家更Stream第二部分知识——终结操作，由于这部分的API内容繁多且复杂，所以我单开一篇给大家细细讲讲，我的文章很长，请大家忍耐一下。",
+				"photo":"5.awebp"
+			},
+    		{
+    			"name": "悠午",
+    			"startTime": "1天前",
+    			"title": "js如何继承",
+    			"content": "曾经在学习js高级语言中，关于js如何继承总结过多种继承方式。当年自认为学懂了现在想起脑子却是一片空白。我不禁反问自己，你是真的懂了吗？",
+				"photo":"6.webp"
+			},
+    		{
+    			"name": "悠悠球",
+    			"startTime": "2天前",
+    			"title": "前端主题切换",
+    			"content": "本文主要给大家带来前端主题切换方案，现在我们经常发现可以看到有些网站会有类似暗黑模式/白天模式的主题切换功能，效果也是十分炫酷，在平时生活中给大家增加不少趣味性。接下来让我们看看如何实现的",
+    				"photo":"7.webp"
+			},
+    		{
+    			"name": "Reac",
+    			"startTime": "3天前",
+    			"title": "React",
+    			"content": "本文主要给大家介绍React团队的测试，React团队如何测试并发特性的。进入大家视野有一段时间了，不知道各位有没有尝试并发特性呢？当启动并发特性后，React会从同步",
+    				"photo":"8.awebp"
+			},
+    		{
+    			"name": "qq",
+    			"startTime": "3天前",
+    			"title": "腾讯前端面试指南",
+    			"content": "本文主要给大家带来组内一面面试官淄博的面试题，用于给大家进行前端知识扫盲，希望对正在求职的同学以及正在准备秋招的应届生有所帮助。如果你真的想要了解更多的详细信息，可以询问淄博。",
+    				"photo":"9.awebp",
+			},
+    		{
+    			"name": "信心",
+    			"startTime": "3天前",
+    			"title": "上手体验TailwindCSS",
+    			"content": "在热火朝天的前端框架演示的进程中，大多数人的目光关注在JavaScript的身上，而作为最有争议但是也是最具创新价值的我们应该去上手体验一下。本文详细介绍。",
+    				"photo":"10.webp",
+			},
+			{
+    			"name": "xin巴",
+    			"startTime": "3天前",
+    			"title": "前端食堂技术周刊",
+    			"content": "Deno迎接来重大变革-StackBlitz 组内一面面试官子弈的面试题，用于给大家进行前端知识扫盲，希望对正在求职的同学以及正在准备秋招的应届生有所帮助。如果你真的想要了解更多的详细信息，可以询问子弈。",
+    				"photo":"11.webp"},
+			{
+    			"name": "童欧巴",
+    			"startTime": "3天前",
+    			"title": "深飘困境",
+    			"content": "目前在一家中等规模b端公司，从基层打砸到前端组长，受过很委屈，自己默默承受。以为工作三年后就自然而然成为很厉害的前端，但事实证明并不是。虽然自己很努力的学习但",
+    				"photo":"12.webp",
+			},	
+			{
+    			"name": "倩倩",
+    			"startTime": "4天前",
+    			"title": "思考vue3",
+    			"content": "携手创作，共同成长。本人认为框架的初衷是带给开发者更好知识扫盲，更快的性能，更简单的操作。最新框架版本spa，hooks逻辑复用。vite初始化vue3项目方案",
+    				"photo":"13.awebp",
+			},	
+			{
+
+    			"name": "镇妖",
+    			"startTime": "4天前",
+    			"title": "前端面试指南",
+    			"content": "最近用团队的账号发了一篇文章专有钉钉前端面试指南，初衷是希望给大家传递一些可能没有接触过的知识，其中某些知识可能也超出了前端的范畴，本质是希望给大家提供一些扫盲的思路。但是文章的评论使我意识到大家对于这个文章的抵触心情非常大。",
+    				"photo":"14.awebp",
+			},	
+			{
+    			"name": "锄",
+    			"startTime": "4天前",
+    			"title": "微信机器人，最新可用。实现个人微信收款哦",
+    			"content": "所以你们还觉得前端不需要学docker吗？需要的可以去翻本喵的docker极速入门文章，作为一个开发者，你可以使用 Wechaty 轻松地建立你的机器人",
+    				"photo":"3.awebp",
+			},
+    		{
+    			"name": "天王盖地虎",
+    			"startTime": "4天前",
+    			"title": "稀土开发者大会出品人集结完毕，5折购票火热进行中!",
+    			"content": "2022年4月10-11日，由稀土掘金开发者社区主办的首届 稀土开发者大会 将于北京盛大开幕。目前 14 大热门技术专题出品人全部集结完毕，来自各大互联网科技大厂的明星讲师正持续上线，5折购票火热进行中！",
+    				"photo":"1.awebp"},
+    		{
+    			"name": "宝塔镇河妖",
+    			"startTime": "5天前",
+    			"title": "钉钉面试指南",
+    			"content": "最近用团队的账号发了一篇文章专有钉钉前端面试指南，初衷是希望给大家传递一些可能没有接触过的知识，其中某些知识可能也超出了前端的范畴，本质是希望给大家提供一些扫盲的思路。",
+    				"photo":"2.awebp"},
+    		{
+    			"name": "锄日当午",
+    			"startTime": "5天前",
+    			"title": "Node实现微信机器人，最新可用。实现个人微信收款指南！",
+    			"content": "所以你们还觉得前端不需要学docker吗？需要的可以去翻本喵的docker极速入门文章，作为一个开发者，你可以使用 Wechaty 轻松地建立你的机器人",
+    				"photo":"3.awebp",
+			},
+			{
+				"name": "字节前端",
+				"startTime": "6天前",
+				"title": "第四届字节青春-走进前端",
+				"content": "由于文章字数限制，很多题目无法详尽和深入回答(纯粹是懒，就是想一晚上赶出来文章，嘿!)，本人也只是简略写一下，而且非标准答案，比如问浏览器URL请求流程，那至少能跟面试官扯几个小时",
+					"photo":"4.webp",
+			},
+			{
+				"name": "锄日当午",
+				"startTime": "6天前",
+				"title": "Node实现微信机器人，最新可用。实现个人微信收款指南！",
+				"content": "所以你们还觉得前端不需要学docker吗？需要的可以去翻本喵的docker极速入门文章，作为一个开发者，你可以使用 Wechaty 轻松地建立你的机器人",
+					"photo":"3.awebp"},
+			{
+				"name": "白杨",
+				"startTime": "6天前",
+				"title": "深入理解JVM虚拟机，终结操作！",
+				"content": "虽迟但到，今天就来继续给大家更Stream第二部分知识——终结操作，由于这部分的API内容繁多且复杂，所以我单开一篇给大家细细讲讲，我的文章很长，请大家忍耐一下。",
+					"photo":"5.awebp"},
+			{
+				"name": "悠午",
+				"startTime": "6天前",
+				"title": "js如何继承",
+				"content": "曾经在学习js高级语言中，关于js如何继承总结过多种继承方式。当年自认为学懂了现在想起脑子却是一片空白。我不禁反问自己，你是真的懂了吗？",
+					"photo":"6.webp"},
+			{
+				"name": "悠悠球",
+				"startTime": "7天前",
+				"title": "前端主题切换",
+				"content": "本文主要给大家带来前端主题切换方案，现在我们经常发现可以看到有些网站会有类似暗黑模式/白天模式的主题切换功能，效果也是十分炫酷，在平时生活中给大家增加不少趣味性。接下来让我们看看如何实现的",
+					"photo":"7.webp"},
+			{
+				"name": "Reac",
+				"startTime": "7天前",
+				"title": "React",
+				"content": "本文主要给大家介绍React团队的测试，React团队如何测试并发特性的。进入大家视野有一段时间了，不知道各位有没有尝试并发特性呢？当启动并发特性后，React会从同步",
+					"photo":"8.awebp"},
+			{
+				"name": "qq",
+				"startTime": "7天前",
+				"title": "腾讯前端面试指南",
+				"content": "本文主要给大家带来组内一面面试官淄博的面试题，用于给大家进行前端知识扫盲，希望对正在求职的同学以及正在准备秋招的应届生有所帮助。如果你真的想要了解更多的详细信息，可以询问淄博。",
+					"photo":"9.awebp"},
+			{
+				"name": "信心",
+				"startTime": "7天前",
+				"title": "上手体验TailwindCSS",
+				"content": "在热火朝天的前端框架演示的进程中，大多数人的目光关注在JavaScript的身上，而作为最有争议但是也是最具创新价值的我们应该去上手体验一下。本文详细介绍。",
+					"photo":"10.webp"},
+			{
+				"name": "xin巴",
+				"startTime": "7天前",
+				"title": "前端食堂技术周刊",
+				"content": "Deno迎接来重大变革-StackBlitz 组内一面面试官子弈的面试题，用于给大家进行前端知识扫盲，希望对正在求职的同学以及正在准备秋招的应届生有所帮助。如果你真的想要了解更多的详细信息，可以询问子弈。",
+					"photo":"11.webp"},	{
+				"name": "童欧巴",
+				"startTime": "8天前",
+				"title": "深飘困境",
+				"content": "目前在一家中等规模b端公司，从基层打砸到前端组长，受过很委屈，自己默默承受。以为工作三年后就自然而然成为很厉害的前端，但事实证明并不是。虽然自己很努力的学习但",
+					"photo":"12.webp"},	{
+				"name": "倩倩",
+				"startTime": "8天前",
+				"title": "思考vue3",
+				"content": "携手创作，共同成长。本人认为框架的初衷是带给开发者更好知识扫盲，更快的性能，更简单的操作。最新框架版本spa，hooks逻辑复用。vite初始化vue3项目方案",
+					"photo":"13.awebp"},	{
+
+				"name": "镇妖",
+				"startTime": "8天前",
+				"title": "前端面试指南",
+				"content": "最近用团队的账号发了一篇文章专有钉钉前端面试指南，初衷是希望给大家传递一些可能没有接触过的知识，其中某些知识可能也超出了前端的范畴，本质是希望给大家提供一些扫盲的思路。但是文章的评论使我意识到大家对于这个文章的抵触心情非常大。",
+					"photo":"14.awebp"},	{
+				"name": "锄",
+				"startTime": "8天前",
+				"title": "微信机器人，最新可用。实现个人微信收款哦",
+				"content": "所以你们还觉得前端不需要学docker吗？需要的可以去翻本喵的docker极速入门文章，作为一个开发者，你可以使用 Wechaty 轻松地建立你的机器人",
+					"photo":"3.awebp"},	{
+				"name": "天王盖地虎",
+				"startTime": "8天前",
+				"title": "稀土开发者大会出品人集结完毕，5折购票火热进行中!",
+				"content": "2022年4月10-11日，由稀土掘金开发者社区主办的首届 稀土开发者大会 将于北京盛大开幕。目前 14 大热门技术专题出品人全部集结完毕，来自各大互联网科技大厂的明星讲师正持续上线，5折购票火热进行中！",
+					"photo":"1.awebp"},
+			{
+				"name": "宝塔镇河妖",
+				"startTime": "8天前",
+				"title": "钉钉面试指南",
+				"content": "最近用团队的账号发了一篇文章专有钉钉前端面试指南，初衷是希望给大家传递一些可能没有接触过的知识，其中某些知识可能也超出了前端的范畴，本质是希望给大家提供一些扫盲的思路。但是文章的评论使我意识到大家对于这个文章的抵触心情非常大。",
+					"photo":"2.awebp"},
+			{
+				"name": "锄日当午",
+				"startTime": "8天前",
+				"title": "Node实现微信机器人，最新可用。实现个人微信收款指南！",
+				"content": "所以你们还觉得前端不需要学docker吗？需要的可以去翻本喵的docker极速入门文章，作为一个开发者，你可以使用 Wechaty 轻松地建立你的机器人",
+					"photo":"3.awebp"}
+			,
+			{
+				"name": "字节前端",
+				"startTime": "9天前",
+				"title": "第四届字节青春-走进前端",
+				"content": "由于文章字数限制，很多题目无法详尽和深入回答(纯粹是懒，就是想一晚上赶出来文章，嘿!)，本人也只是简略写一下，而且非标准答案，比如问浏览器URL请求流程，那至少能跟面试官扯几个小时",
+					"photo":"4.webp"},
+			{
+				"name": "锄日当午",
+				"startTime": "9天前",
+				"title": "Node实现微信机器人，最新可用。实现个人微信收款指南！",
+				"content": "所以你们还觉得前端不需要学docker吗？需要的可以去翻本喵的docker极速入门文章，作为一个开发者，你可以使用 Wechaty 轻松地建立你的机器人",
+					"photo":"3.awebp"},
+			{
+				"name": "白杨",
+				"startTime": "9天前",
+				"title": "深入理解JVM虚拟机，终结操作！",
+				"content": "虽迟但到，今天就来继续给大家更Stream第二部分知识——终结操作，由于这部分的API内容繁多且复杂，所以我单开一篇给大家细细讲讲，我的文章很长，请大家忍耐一下。",
+					"photo":"5.awebp"},
+			{
+				"name": "悠午",
+				"startTime": "9天前",
+				"title": "js如何继承",
+				"content": "曾经在学习js高级语言中，关于js如何继承总结过多种继承方式。当年自认为学懂了现在想起脑子却是一片空白。我不禁反问自己，你是真的懂了吗？",
+					"photo":"6.webp"},
+			{
+				"name": "悠悠球",
+				"startTime": "9天前",
+				"title": "前端主题切换",
+				"content": "本文主要给大家带来前端主题切换方案，现在我们经常发现可以看到有些网站会有类似暗黑模式/白天模式的主题切换功能，效果也是十分炫酷，在平时生活中给大家增加不少趣味性。接下来让我们看看如何实现的",
+					"photo":"7.webp"},
+			{
+				"name": "Reac",
+				"startTime": "9天前",
+				"title": "React",
+				"content": "本文主要给大家介绍React团队的测试，React团队如何测试并发特性的。进入大家视野有一段时间了，不知道各位有没有尝试并发特性呢？当启动并发特性后，React会从同步",
+					"photo":"8.awebp"},
+			{
+				"name": "qq",
+				"startTime": "9天前",
+				"title": "腾讯前端面试指南",
+				"content": "本文主要给大家带来组内一面面试官淄博的面试题，用于给大家进行前端知识扫盲，希望对正在求职的同学以及正在准备秋招的应届生有所帮助。如果你真的想要了解更多的详细信息，可以询问淄博。",
+					"photo":"9.awebp"},
+			{
+				"name": "信心",
+				"startTime": "9天前",
+				"title": "上手体验TailwindCSS",
+				"content": "在热火朝天的前端框架演示的进程中，大多数人的目光关注在JavaScript的身上，而作为最有争议但是也是最具创新价值的我们应该去上手体验一下。本文详细介绍。",
+					"photo":"10.webp"},
+			{
+				"name": "xin巴",
+				"startTime": "9天前",
+				"title": "前端食堂技术周刊",
+				"content": "Deno迎接来重大变革-StackBlitz 组内一面面试官子弈的面试题，用于给大家进行前端知识扫盲，希望对正在求职的同学以及正在准备秋招的应届生有所帮助。如果你真的想要了解更多的详细信息，可以询问子弈。",
+				"photo":"11.webp",
+			},	
+			{
+				"name": "童欧巴",
+				"startTime": "10天前",
+				"title": "深飘困境",
+				"content": "目前在一家中等规模b端公司，从基层打砸到前端组长，受过很委屈，自己默默承受。以为工作三年后就自然而然成为很厉害的前端，但事实证明并不是。虽然自己很努力的学习但",
+					"photo":"12.webp",
+			},	
+			{
+				"name": "倩倩",
+				"startTime": "14天前",
+				"title": "思考vue3",
+				"content": "携手创作，共同成长。本人认为框架的初衷是带给开发者更好知识扫盲，更快的性能，更简单的操作。最新框架版本spa，hooks逻辑复用。vite初始化vue3项目方案",
+					"photo":"13.awebp",
+			},	
+			{
+				"name": "镇妖",
+				"startTime": "14天前",
+				"title": "前端面试指南",
+				"content": "最近用团队的账号发了一篇文章专有钉钉前端面试指南，初衷是希望给大家传递一些可能没有接触过的知识，其中某些知识可能也超出了前端的范畴，本质是希望给大家提供一些扫盲的思路。但是文章的评论使我意识到大家对于这个文章的抵触心情非常大。",
+					"photo":"14.awebp",
+			},	
+			{
+				"name": "锄",
+				"startTime": "14天前",
+				"title": "微信机器人，最新可用。实现个人微信收款哦",
+				"content": "所以你们还觉得前端不需要学docker吗？需要的可以去翻本喵的docker极速入门文章，作为一个开发者，你可以使用 Wechaty 轻松地建立你的机器人",
+				"photo":"3.awebp",
+			}
+    		
+    	]
+        let num= 7;
+        
+        //页面初始时，只加载7条数据
+        let str = getData(data,0,7);
+        $(".box").html(str);  
+        
+        function getData(data,start,end) { 
+            let str = "";
+            let zdata = data.slice(start,end);
+            for (let i = 0; i < zdata.length; i++) {
+                str += "<div class='box-list'><i>"+ zdata[i].name+" </i><shu>|</shu><ii> "+zdata[i].startTime+"</ii><br><h3>"+zdata[i].title+"</h3><br><div class='span'><div class='d'><span>"+zdata[i].content+"</div></span></div><img class='img1' src='img/"+zdata[i].photo+"'></div>"
+            }
+            return str;
+        }
+        
+        //滚动监听
+        $(window).scroll(function () {
+            var scrollTop = $(this).scrollTop();
+            var scrollHeight = $(document).height();
+            var windowHeight = $(this).height();
+           
+            if (scrollTop + windowHeight + 10 >= scrollHeight) {
+                //这部分写逻辑代码
+                //滚动条下拉时，再追加下面的dom数据
+                if(num <= data.length){
+                    let sum = getData(data,num,num+7);
+                    num = num+7;
+                    $(".box").append(sum)
+                }
+            }
+        });
+    });
+
+</script>
+<body>
+	<div id="middle">
+		<div class="container-left">
+			<div class="container-left-top">
+				<ul>
+					<li>
+						<a class="a">推荐</a>|
+						<a class="a">最新</a>|
+						<a class="a">热榜</a>
+						<!-- <a href="#" class="a-active a">推荐 </ a>
+						<a class="shu">|</ a>
+						<a href="#" class="a">最新</ a>
+						<a class="shu">|</ a>
+						<a href="#" class="a">热榜 </ a> -->
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="box">
+
+		</div>
+		
+		<!-- 右边部分 -->
+		<aside class="main-right">
+			<div id="right-top">
+				<div id="signIn">
+					<img src="./img/日历.png">
+					<div id="time">上午好！</div>
+					<a href="#">去签到</a>
+				</div>
+				<div class="lightUp">点亮你在社区的每一天</div>
+			</div>
+			
+			<div id="pay">
+				<a href="https://juejin.cn/book/7117582869358182403?utm_source=web_banner&utm_medium=banner&utm_campaign=Book_zjk_0803">
+					<img src="./img/稀金小册.webp" >
+				</a>
+			</div>
+			
+			<div id="code">
+				<a href="https://juejin.cn/app">
+					<img src="./img/二维码.png" >
+					<div id="content">
+						<div id="code-title">下载稀土掘金APP</div>
+						<div id="code-slogan">一个帮助开发者成长的社区</div>
+					</div>
+				</a>
+			</div>
+			
+			<div id="author-list">
+				<header id="list-title">
+					<img src="./img/奖牌.png" >作者榜
+				</header>
+				<div id="list-content">
+					<ul>
+						<li>
+							<img src="img/author1.image" class="author-img">
+							<div class="author-title">
+								<div class="title1">东方小月</div>
+								<div class="title2">前端全干工程师</div>
+							</div>
+						</li>
+						<li>
+							<img src="img/author2.image" class="author-img">
+							<div class="author-title">
+								<div class="title1">嘿嘿Z</div>
+								<div class="title2">-</div>
+							</div>
+						</li>
+						<li>
+							<img src="img/author3.image" class="author-img">
+							<div class="author-title">
+								<div class="title1">HullQin</div>
+								<div class="title2">公众号@线下聚会游戏</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div id="right-bottom">
+				<ul>
+					<li>
+						<a href="javascript:;">
+							<img src="./img/指南.png" >
+							<div>稀土掘金漫游指南</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<img src="./img/插件.png" >
+							<div>安装掘金浏览器插件</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<img src="./img/计划.png" >
+							<div>前往掘金翻译计划</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+	</div>
+</body>
+</html>

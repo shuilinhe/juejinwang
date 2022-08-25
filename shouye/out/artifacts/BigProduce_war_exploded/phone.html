@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            z-index: 1;
+            background-image: url("images/back.png");
+            background-size:100% 100%;
+            background-attachment: fixed;
+        }
+        .div1 {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            -moz-opacity: 0.8;
+            opacity: .3;
+            z-index: 500;
+        }
+        .div2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,.3);
+            z-index: 500;
+        }
+        .div3 {
+            text-align: right;
+            margin-top: -65px;
+            color: #cdcdcd;
+        }
+
+        form {
+            position: relative;
+            padding: 2rem;
+            width: 26.5rem;
+            font-size: 1.167rem;
+            background-color: #fff;
+            box-sizing: border-box;
+            z-index: 1001;
+        }
+        img {
+            transform: translate(-50%,-150.6%);
+            position: absolute;
+            left: 50%;
+            width: 10rem;
+            z-index: 2001;
+            margin-top: -224px;
+        }
+        input {
+            padding: 10px 0px;
+            width: 100%;
+            border: 1px solid #e9e9e9;
+            font: inherit;
+            margin-bottom: .8rem;
+        }
+        button {
+            width: 100%;
+            height: 3.334rem;
+            color: #fff;
+            background-color: #007fff;
+            border-radius: 2px;
+            outline: none;
+            box-sizing: border-box;
+            cursor: pointer;
+            margin-top: 5px;
+            margin-bottom: .8rem;
+            border: none;
+            padding: .5rem 1.3rem;
+        }
+        a{
+            text-decoration: none;
+            color: #007fff;
+        }
+
+    </style>
+    <script>
+        function test1(xxx){
+            if (xxx==="111"){
+                var x = document.getElementById("div3");
+                x.style.color="#000";
+            }
+            else {
+                var x = document.getElementById("div3");
+                x.style.color="#cdcdcd";
+            }
+        }
+        function test2(xxx) {
+            if (xxx==="111"){
+                var x = document.getElementById("img1");
+                x.src = "images/name.svg";
+                x.style.marginTop="-231px"
+            }
+            else {
+                var x = document.getElementById("img1");
+                x.src = "images/online.svg";
+                x.style.marginTop="-224px"
+            }
+        }
+        function test3(xxx) {
+            if (xxx==="111"){
+                var x = document.getElementById("img1");
+                x.src = "images/pwd.svg";
+                x.style.marginTop="-253px"
+            }
+            else {
+                var x = document.getElementById("img1");
+                x.src = "images/online.svg";
+                x.style.marginTop="-224px"
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div class="div1">
+</div>
+<div class="div2">
+    <img id="img1" src="images/online.svg">
+    <form>
+        <h2>手机登录</h2><br/>
+        <div id="div3" class="div3" onmouseover="test1('111')" onmouseout="test1('222')">x</div>
+        <br>
+        <input type="text" name="username"  placeholder="请输入手机号码" onmouseover="test2('111')" onmouseout="test2('222')"><br>
+        <input type="password" name="password" placeholder="验证码" onmouseover="test3('111')" onmouseout="test3('222')"><br>
+        <button type="submit"><font size="4">登录</font></button><br>
+        <h4><a href="password.html">其他登录方式</a></h4>
+        <h4><font color="grey">注册登录即表示同意 </font><a href="https://lf3-cdn-tos.draftstatic.com/obj/ies-hotsoon-draft/juejin/86857833-55f6-4d9e-9897-45cfe9a42be4.html">用户协议</a>、
+            <a href="https://lf3-cdn-tos.draftstatic.com/obj/ies-hotsoon-draft/juejin/7b28b328-1ae4-4781-8d46-430fef1b872e.html">隐私政策</a></h4>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+#phone{
+	border:1px solid #e9e9e9;
+	width:340px;
+	height:24px;
+	padding: 10px 10px;
+	margin-bottom:15px;
+	display:flex;
+}
+#phone-leftside{
+	/* width:25%; */
+	width:85px;
+	float: left;
+	position:relative;
+	display:flex;
+}
+#phone-leftside::before{
+	content: '+';
+}
+#number,#phone-rightside,#img-down{
+	border:none;
+	outline:none;
+	margin:0;
+	padding:0;
+}
+#number{
+	width:35px;
+	padding: 5px 0px;
+}
+#img-down{
+	/* background:url(./images/down.png); */
+	background-size: 13px 13px;
+	background-repeat: no-repeat;
+	width:13px;
+	height:13px;
+	margin-top:5px;
+	/* 相对于phone-leftside*/
+	position:absolute;
+	left:55px;
+	top:0px;
+}
+#phone-rightside{
+	/* width:74.5%; */
+	width:255px;
+	height:24px;
+	float:right;
+	padding: 0 5px;
+}
+.phone-area{
+	width: 250px;
+	height:150px;
+	position:absolute;
+	overflow:auto;
+	top:168px;
+	left:32px;
+	border:1px solid #e9e9e9;
+	display: none;
+	background-color: white;
+}
+.phone-ul{
+	list-style:none;
+	margin:0;
+	padding:10px;
+}
+.phone-ul li{
+	margin:5px;
+	display:flex;
+}
+.phone-ul li:hover{
+	width:100%;
+	background-color: #dddddd;
+}
+.span2{
+	position:absolute;
+	right:10px;
+}

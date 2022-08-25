@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/phoneNumber.css"/>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <script>
+        function test1(xxx){
+            if (xxx==="111"){
+                var x = document.getElementById("div3");
+                x.style.color="#000";
+            }
+            else {
+                var x = document.getElementById("div3");
+                x.style.color="#cdcdcd";
+            }
+        }
+        function test2(xxx) {
+            if (xxx==="111"){
+                var x = document.getElementById("img1");
+                x.src = "images/name.svg";
+                x.style.marginTop="-231px"
+            }
+            else {
+                var x = document.getElementById("img1");
+                x.src = "images/online.svg";
+                x.style.marginTop="-224px"
+            }
+        }
+        function test3(xxx) {
+            if (xxx==="111"){
+                var x = document.getElementById("img1");
+                x.src = "images/pwd.svg";
+                x.style.marginTop="-253px"
+            }
+            else {
+                var x = document.getElementById("img1");
+                x.src = "images/online.svg";
+                x.style.marginTop="-224px"
+            }
+        }
+		function chooseArea(){
+			var image = document.getElementById("img-down");
+			var area = document.getElementsByClassName("phone-area")[0];
+			if(area.style.display == 'block'){
+				area.style.display = 'none';
+			}else{
+				area.style.display = 'block';
+			}
+			
+			if(image.getAttribute("src")=="./images/down.png"){
+				image.setAttribute("src","./images/up.png");
+			}else{
+				image.setAttribute("src","./images/down.png");
+			}
+		}
+		window.onload = function(){
+			// 在文本框中显示不同地区的编号
+			var lis = document.getElementsByClassName("phone-li");
+			var spans = document.getElementsByClassName("span2");
+			var number = document.getElementById("number");
+			for(var i=0;i<lis.length;i++){
+				lis[i].onclick = function(){
+					// this表示当前的li
+					span2 = this.getElementsByClassName("span2")[0].innerHTML;
+					// 取字符串除了“+”的部分
+					number.value = span2.slice(1);
+				};
+			}
+			
+			// 点击叉号退出重置密码页面
+			var div2 = document.getElementsByClassName("div2")[0];
+			var div3 = document.getElementsByClassName("div3")[0];
+			div3.onclick = function(){
+				div2.style.display = 'none';
+			};
+		}
+    </script>
+</head>
+<body>
+<div class="div1">
+</div>
+<div class="div2">
+    <img id="img1" src="images/online.svg">
+    <form action="reset" method="post">
+        <h2>手机重置密码</h2><br/>
+        <div id="div3" class="div3" onmouseover="test1('111')" onmouseout="test1('222')">x</div>
+        <br>
+        <!-- <input type="text" name="username"  placeholder="请输入手机号码" onmouseover="test2('111')" onmouseout="test2('222')"><br> -->
+		
+		<div id="phone">
+		    <div id="phone-leftside">
+				<input id="number" value="86">
+		        <img src="./images/down.png" id="img-down" onclick="chooseArea()">
+		    </div>
+			
+			<input id="phone-rightside" type="text" name="username"  placeholder="请输入手机号码" onmouseover="test2('111')" onmouseout="test2('222')"><br>
+			
+			<div class="phone-area">
+				<ul class="phone-ul">
+					<li class="phone-li">
+						<span class="span1">中国</span>
+						<span class="span2">+86</span>
+					</li>
+					<li class="phone-li">
+						<span class="span1">中国澳门</span>
+						<span class="span2">+853</span>
+					</li>
+					<li class="phone-li">
+						<span class="span1">中国台湾</span>
+						<span class="span2">+886</span>
+					</li>
+					<li class="phone-li">
+						<span class="span1">阿尔巴尼亚</span>
+						<span class="span2">+355</span>
+					</li>
+					<li class="phone-li">
+						<span class="span1">阿尔及利亚</span>
+						<span class="span2">+213</span>
+					</li>
+					<li class="phone-li">
+						<span class="span1">阿富汗</span>
+						<span class="span2">+93</span>
+					</li>
+					<li class="phone-li">
+						<span class="span1">阿根廷</span>
+						<span class="span2">+54</span>
+					</li>
+					<li class="phone-li">
+						<span class="span1">阿拉伯联合酋长国</span> 
+						<span class="span2">+971</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+        <input id="code" type="text" name="password1"  placeholder="验证码" ><br>
+        <input id="new-psd" type="password" name="password" placeholder="请输入新密码" onmouseover="test3('111')" onmouseout="test3('222')"><br>
+        <button type="submit"><font size="4">修改</font></button><br>
+        <h4><a href="email.html" >邮箱重置密码</a>
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;
+            <a href="password.html" >账密登录</a>
+        </h4>
+    </form>
+</div>
+</body>
+</html>

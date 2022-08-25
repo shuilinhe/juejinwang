@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>掘金</title>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<link rel="stylesheet" type="text/css" href="css/phoneNumber.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/header.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/homePage.css"/>
+
+		<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="js/homePage.js"></script>
+		<script>
+		$(function() {
+			$(".second-nav-ul").on("click", "li", function() {
+				var sId = $(this).data("id"); //获取data-id的值
+				window.location.hash = sId; //设置锚点
+				loadInner();
+			});
+
+			function loadInner() {
+				var sId = window.location.hash;
+				var pathn, i;
+				switch(sId) {
+					case "#zonghe":
+						pathn = "zonghe.html";
+						i = 0;
+						break;
+					case "#guanzhu":
+						pathn = "guanzhu.html";
+						i = 1;
+						break;
+					case "#houduan":
+						pathn = "houduan.html";
+						i = 2;
+						break;
+					case "#qianduan":
+						pathn = "qianduan.html";
+						i = 3;
+						break;
+					case "#Android":
+						pathn = "Android.html";
+						i = 4;
+						break;
+					case "#iOS":
+						pathn = "iOS.html";
+						i = 5;
+						break;
+					case "#AI":
+						pathn = "AI.html";
+						i = 6;
+						break;
+					case "#developmentTools":
+						pathn = "developmentTools.html";
+						i = 7;
+						break;
+					case "#codeLife":
+						pathn = "codeLife.html";
+						i = 8;
+						break;
+					case "#yuedu":
+						pathn = "yuedu.html";
+						i = 9;
+						break;
+					default:
+						pathn = "zonghe.html";
+						i = 0;
+						break;
+				}
+				$("#ajax").load(pathn); //加载相对应的内容
+				$(".userMenu li").eq(i).addClass("current").siblings().removeClass("current"); //当前列表高亮
+			}
+			var sId = window.location.hash;
+			loadInner();
+		});
+		</script>
+		<script>
+		// 获取所有的 li 标签
+		var liObjs = document.getElementsByClassName('second-nav-ul')[0].getElementsByTagName('li');
+		// 循环遍历，找到每个 li 中的 a，注册点击事件
+		for (var i = 0; i < liObjs.length; i++) {
+			// 每个 li 中的 a
+			var aObj = liObjs[i].firstElementChild;
+
+			aObj.onclick = function () {
+				// 把这个 a 所在的 li 的所有的兄弟元素的类样式全部移除
+				for (var j = 0; j < liObjs.length; j++) {
+					liObjs[j].removeAttribute('class');
+				}
+				//当前点击的 a 的父级元素 li(点击的这个 a 所在的父级元素 li)，设置背景颜色
+				this.parentNode.className = 'current';
+			};
+		}
+	</script>
+	</head>
+	<body>
+		<div id="hide"></div>
+		<div id="allnav">
+			<!-- 首行导航栏 -->
+			<header>
+				<a href="homePage.html">
+					<img class="logo" src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg"alt="稀土掘金">
+				</a>
+				<nav class="first-nav">
+					<ul class="leftside">
+						<li>
+							<a href="homePage.html">首页</a>
+						</li>
+						<li>
+							<a href="#">沸点</a>
+						</li>
+						<li>
+							<a href="javascript:;">课程</a>
+						</li>
+						<li>
+							<a href="javascript:;">直播</a>
+						</li>
+						<li>
+							<a href="javascript:;">活动</a>
+						</li>
+						<li>
+							<a href="javascript:;">商城</a>
+						</li>
+						<li>
+							<a href="javascript:;">APP</a>
+						</li>
+						<li>
+							<a href="javascript:;">插件</a>
+						</li>
+					</ul>
+					<ul class="rightside">
+						<li>
+							<form id="search-box">
+								<input type="text" name="search" id="searchInput" placeholder="探索稀土掘金"/>
+								<img src="./img/search.png" id="searchIcon">
+							</form>
+						</li>
+						<li>
+							<div id="chuangzao">
+								<button type="button" id="btn">创作者中心</button>
+								<button type="button" id="btn-bottom">
+									<div id="arrow-bottom">
+										<!-- <ul class="arrow-ul">
+											<li>写文章</li>
+											<li>发沸点</li>
+											<li>写代码</li>
+										</ul> -->
+									</div>
+								</button>
+							</div>
+						</li>
+						<li>
+							<div id="vip">
+								<img src="./img/会员.svg" id="vip-img"/>
+								<div id="vip-title">会员</div>
+							</div>
+						</li>
+						<li>
+							<input type="button" name="login" id="login" value="登录" onclick="login()"/>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			
+			<!-- 登录界面 -->
+			<div class="div2">
+			    <img id="img1" src="img/online.svg">
+			    <form id="form1" action="login" method="post">
+			        <h2>手机登录</h2><br/>
+			        <div id="div3-1" class="div3" onmouseover="test1('111')" onmouseout="test1('222')">x</div>
+			        <br>
+					
+			        <div id="phone">
+			            <div id="phone-leftside">
+							<input id="number" value="86">
+			                <img src="./img/down.png" class="img-down">
+			            </div>
+						
+						<input id="phone-rightside" type="text" name="username"  placeholder="请输入手机号码" onmouseover="test2('111')" onmouseout="test2('222')"><br>
+						
+						<div class="phone-area">
+							<ul class="phone-ul">
+								<li class="phone-li">
+									<span class="span1">中国</span>
+									<span class="span2">+86</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">中国澳门</span>
+									<span class="span2">+853</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">中国台湾</span>
+									<span class="span2">+886</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿尔巴尼亚</span>
+									<span class="span2">+355</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿尔及利亚</span>
+									<span class="span2">+213</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿富汗</span>
+									<span class="span2">+93</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿根廷</span>
+									<span class="span2">+54</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿拉伯联合酋长国</span> 
+									<span class="span2">+971</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+			        <input id="form-code" type="password" name="password" placeholder="验证码" onmouseover="test3('111')" onmouseout="test3('222')"><br>
+			        <button type="submit">
+						<font size="4">登录</font>
+					</button><br>
+			        <h4>
+						<a href="#" id="other">其他登录方式</a>
+					</h4>
+			        <h4>
+						<font color="grey">注册登录即表示同意 </font>
+						<a href="https://lf3-cdn-tos.draftstatic.com/obj/ies-hotsoon-draft/juejin/86857833-55f6-4d9e-9897-45cfe9a42be4.html">用户协议</a>、
+			            <a href="https://lf3-cdn-tos.draftstatic.com/obj/ies-hotsoon-draft/juejin/7b28b328-1ae4-4781-8d46-430fef1b872e.html">隐私政策</a>
+					</h4>
+			    </form>
+				
+				<form id="form2" action="login" method="post">
+				    <h2>账密登录</h2><br/>
+				    <div id="div3-2" class="div3" onmouseover="test1('111')" onmouseout="test1('222')">x</div>
+				    <br>
+				    <input type="text" name="username"  placeholder="邮箱/手机号(国际号码加区号)" onmouseover="test2('111')" onmouseout="test2('222')"><br>
+				    <input type="password" name="password" placeholder="请输入密码" onmouseover="test3('111')" onmouseout="test3('222')"><br>
+				    <button type="submit"><font size="4">登录</font></button><br>
+				    <h4 class="h4">
+						<a href="#" id="login-phone">手机登录</a>
+				        <a href="#" id="forgetPsd">忘记密码</a>
+				    </h4>
+				    <p>
+				        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    <a href="https://api.weibo.com/oauth2/authorize?client_id=2380925997&response_type=code&display=mobile&state=1c4809963gASoVCgoVPZIGU1ZDBlYjE0MWE0ODM4ZDU0ZjFiM2I2MDc1MGZmZDQ1oU6-aHR0cHM6Ly9qdWVqaW4uY24vb2F1dGgtcmVzdWx0oVYBoUkAoUQAoUHRCjChTdEKMKFIqWp1ZWppbi5jbqFSBKJQTNEE_KZBQ1RJT06goUzZSWh0dHBzOi8vanVlamluLmNuL3VzZXIvMTI4OTA5MjQ5MzIxNTk1MD91dG1fc291cmNlPWdvbGRfYnJvd3Nlcl9leHRlbnNpb26hVNkgODA2YzNjYWI2ZWE3MmMwMTMxZmEyNTVmNTAzYjRiZTmhVwChRgCiU0EAoVXD&redirect_uri=https%3A%2F%2Fjuejin.cn%2Fpassport%2Fauth%2Flogin_success">
+				        <img src="img/weibo.svg" alt="1" width="40px" height="40px" /></a> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+				    <a href="https://open.weixin.qq.com/connect/qrconnect?appid=wx5059f665cac93f16&redirect_uri=https%3A%2F%2Fjuejin.cn%2Fpassport%2Fauth%2Flogin_success&response_type=code&scope=snsapi_login&state=8c893e623gASoVCgoVPZIGNlMjZiYjg0ODZlZGI0NzdmY2M1ZmI4ZDk4YTg5MDc4oU6-aHR0cHM6Ly9qdWVqaW4uY24vb2F1dGgtcmVzdWx0oVYBoUkAoUQAoUHRCjChTdEKMKFIqWp1ZWppbi5jbqFSBKJQTNEE_aZBQ1RJT06goUzZjWh0dHBzOi8vanVlamluLmNuL2xvZ2luP3V0bV9zb3VyY2U9Z29sZF9icm93c2VyX2V4dGVuc2lvbiZ0bz1odHRwcyUzQSUyRiUyRmp1ZWppbi5jbiUyRnVzZXIlMkZjZW50ZXIlMkZzaWduaW4lM0Zmcm9tJTNEZ29sZF9icm93c2VyX2V4dGVuc2lvbqFU2SBhY2QzNGE5ZTc2OWIwZjVhYzliZjg3NDJmOGVjOGEwZqFXAKFGAKJTQQChVcM%253D#wechat_redirect">
+				        <img src="img/wx.svg" alt="2" width="40px" height="40px"  /></a> &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    <a href="https://github.com/login?client_id=60483ab971aa5416e000&return_to=%2Flogin%2Foauth%2Fauthorize%3Fclient_id%3D60483ab971aa5416e000%26redirect_uri%3Dhttps%253A%252F%252Fjuejin.cn%252Fpassport%252Fauth%252Flogin_success%26scope%3Duser%253Aemail%26state%3D058cb45c3gASoVCgoVPZIDY5YzgzMGRiZTg2NDBkNzVhMDdhZTI1OGQ2ODU0YzY0oU6-aHR0cHM6Ly9qdWVqaW4uY24vb2F1dGgtcmVzdWx0oVYBoUkAoUQAoUHRCjChTdEKMKFIqWp1ZWppbi5jbqFSBKJQTNEEFaZBQ1RJT06goUzZjWh0dHBzOi8vanVlamluLmNuL2xvZ2luP3V0bV9zb3VyY2U9Z29sZF9icm93c2VyX2V4dGVuc2lvbiZ0bz1odHRwcyUzQSUyRiUyRmp1ZWppbi5jbiUyRnVzZXIlMkZjZW50ZXIlMkZzaWduaW4lM0Zmcm9tJTNEZ29sZF9icm93c2VyX2V4dGVuc2lvbqFU2SBhNmM1NDg4ZTcwZGNiMTNhZDk5MDdlZDllMmM0MTZjZqFXAKFGAKJTQQChVcM%253D">
+				        <img src="img/GitHub.svg" alt="3" width="40px" height="40px"/></a>
+				    </p>
+				    <h4>
+						<font color="grey">注册登录即表示同意 </font>
+						<a href="https://lf3-cdn-tos.draftstatic.com/obj/ies-hotsoon-draft/juejin/86857833-55f6-4d9e-9897-45cfe9a42be4.html">用户协议</a>、
+				        <a href="https://lf3-cdn-tos.draftstatic.com/obj/ies-hotsoon-draft/juejin/7b28b328-1ae4-4781-8d46-430fef1b872e.html">隐私政策</a>
+					</h4>
+				</form>
+				
+				<form id="form3">
+				    <h2>手机重置密码</h2><br/>
+				    <div id="div3-3" class="div3" onmouseover="test1('111')" onmouseout="test1('222')">x</div>
+				    <br>
+				    <!-- <input type="text" name="username"  placeholder="请输入手机号码" onmouseover="test2('111')" onmouseout="test2('222')"><br> -->
+					
+					<div id="phone" class="phone">
+					    <div id="phone-leftside">
+							<input id="number" class="number" value="86">
+					        <img src="./img/down.png" class="img-down">
+					    </div>
+						<input id="phone-rightside" type="text" name="username"  placeholder="请输入手机号码" onmouseover="test2('111')" onmouseout="test2('222')"><br>
+						<div class="phone-area">
+							<ul class="phone-ul">
+								<li class="phone-li">
+									<span class="span1">中国</span>
+									<span class="span2">+86</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">中国澳门</span>
+									<span class="span2">+853</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">中国台湾</span>
+									<span class="span2">+886</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿尔巴尼亚</span>
+									<span class="span2">+355</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿尔及利亚</span>
+									<span class="span2">+213</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿富汗</span>
+									<span class="span2">+93</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿根廷</span>
+									<span class="span2">+54</span>
+								</li>
+								<li class="phone-li">
+									<span class="span1">阿拉伯联合酋长国</span> 
+									<span class="span2">+971</span>
+								</li>
+							</ul> 
+						</div>
+					</div>
+					
+				    <input id="form-code" type="text" name="password1"  placeholder="验证码" ><br>
+				    <input id="new-psd" type="password" name="password" placeholder="请输入新密码" onmouseover="test3('111')" onmouseout="test3('222')"><br>
+				    <button type="submit"><font size="4">修改</font></button><br>
+				    <h4 class="h4">
+						<a href="#" id="email">邮箱重置密码</a>
+				        <a href="#" class="account-login">账密登录</a>
+				    </h4>
+				</form>
+			
+				<form id="form4">
+				    <h2>邮箱重置密码</h2><br/>
+				    <div id="div3-4" class="div3" onmouseover="test1('111')" onmouseout="test1('222')">x</div>
+				    <br>
+				    <input type="text" name="email"  placeholder="请输入邮箱密码" onmouseover="test2('111')" onmouseout="test2('222')"><br>
+				    <button type="submit"><font size="4">发送验证邮箱</font></button><br>
+				    <h4 class="h4">
+						<a href="#" id="phone-reset">手机重置密码</a>
+				        <a href="#" class="account-login">账密登录</a>
+				    </h4>
+				</form>
+			</div>
+			
+			<!-- 第二行导航栏 -->
+			<nav class="second-nav">
+				<ul class="second-nav-ul">
+					<li><a href="javascript:;" class="current" data-id="zonghe">综合</a></li>
+					<li><a href="javascript:;" data-id="guanzhu">关注</a></li>
+					<li class="backend">
+						<a href="javascript:;" data-id="houduan">后端</a>
+						<ul>
+							<li><a href="javascript:;">后端</a></li>
+							<li><a href="javascript:;">Java</a></li>
+							<li><a href="javascript:;">Go</a></li>
+							<li><a href="javascript:;">算法</a></li>
+							<li><a href="javascript:;">Python</a></li>
+							<li><a href="javascript:;">数据库</a></li>
+							<li><a href="javascript:;">Spring Boot</a></li>
+							<li><a href="javascript:;">MySQL</a></li>
+							<li><a href="javascript:;">架构</a></li>
+							<li><a href="javascript:;">面试</a></li>
+							<li><a href="javascript:;">LeetCode</a></li>
+							<li><a href="javascript:;">Redis</a></li>
+							<li><a href="javascript:;">Linux</a></li>
+							<li><a href="javascript:;">大数据</a></li>
+							<li><a href="javascript:;">Spring</a></li>
+						</ul>
+					</li>
+					<li class="frontend">
+						<a href="javascript:;" data-id="qianduan">前端</a>
+						<ul>
+							<li><a href="javascript:;">前端</a></li>
+							<li><a href="javascript:;">JavaScript</a></li>
+							<li><a href="javascript:;">Vue.js</a></li>
+							<li><a href="javascript:;">React.js</a></li>
+							<li><a href="javascript:;">CSS</a></li>
+							<li><a href="javascript:;">面试</a></li>
+							<li><a href="javascript:;">TypeScript</a></li>
+							<li><a href="javascript:;">后端</a></li>
+							<li><a href="javascript:;">Node.js</a></li>
+							<li><a href="javascript:;">算法</a></li>
+							<li><a href="javascript:;">架构</a></li>
+							<li><a href="javascript:;">前端框架</a></li>
+							<li><a href="javascript:;">Webpack</a></li>
+							<li><a href="javascript:;">微信小程序</a></li>
+							<li><a href="javascript:;">Android</a></li>
+						</ul>
+					</li>
+					<li class="Android">
+						<a href="javascript:;" data-id="Android">Android</a>
+						<ul>
+							<li><a href="javascript:;">Android</a></li>
+							<li><a href="javascript:;">Flutter</a></li>
+							<li><a href="javascript:;">前端</a></li>
+							<li><a href="javascript:;">Kotlin</a></li>
+							<li><a href="javascript:;">Android Jetpack</a></li>
+							<li><a href="javascript:;">Java</a></li>
+							<li><a href="javascript:;">APP</a></li>
+							<li><a href="javascript:;">架构</a></li>
+							<li><a href="javascript:;">游戏</a></li>
+							<li><a href="javascript:;">性能优化</a></li>
+							<li><a href="javascript:;">面试</a></li>
+							<li><a href="javascript:;">源码</a></li>
+							<li><a href="javascript:;">iOS</a></li>
+							<li><a href="javascript:;">Android Studio</a></li>
+							<li><a href="javascript:;">开源</a></li>
+						</ul>
+					</li>
+					<li class="iOS">
+						<a href="javascript:;" data-id="iOS">iOS</a>
+						<ul>
+							<li><a href="javascript:;">iOS</a></li>
+							<li><a href="javascript:;">Swift</a></li>
+							<li><a href="javascript:;">SwiftUI</a></li>
+							<li><a href="javascript:;">Flutter</a></li>
+							<li><a href="javascript:;">前端</a></li>
+							<li><a href="javascript:;">Objective-C</a></li>
+							<li><a href="javascript:;">LeetCode</a></li>
+							<li><a href="javascript:;">WWDC</a></li>
+							<li><a href="javascript:;">Xcode</a></li>
+							<li><a href="javascript:;">算法</a></li>
+							<li><a href="javascript:;">设计模式</a></li>
+							<li><a href="javascript:;">Mac</a></li>
+							<li><a href="javascript:;">面试</a></li>
+							<li><a href="javascript:;">计算机视觉</a></li>
+							<li><a href="javascript:;">Android</a></li>
+						</ul>
+					</li>
+					<li class="ai">
+						<a href="javascript:;" data-id="AI">人工智能</a>
+						<ul>
+							<li><a href="javascript:;">人工智能</a></li>
+							<li><a href="javascript:;">深度学习</a></li>
+							<li><a href="javascript:;">算法</a></li>
+							<li><a href="javascript:;">机器学习</a></li>
+							<li><a href="javascript:;">Python</a></li>
+							<li><a href="javascript:;">计算机视觉</a></li>
+							<li><a href="javascript:;">后端</a></li>
+							<li><a href="javascript:;">NLP</a></li>
+							<li><a href="javascript:;">PyTorch</a></li>
+							<li><a href="javascript:;">TensorFlow</a></li>
+							<li><a href="javascript:;">数据分析</a></li>
+							<li><a href="javascript:;">神经网络</a></li>
+							<li><a href="javascript:;">数据挖掘</a></li>
+							<li><a href="javascript:;">程序员</a></li>
+							<li><a href="javascript:;">强化学习</a></li>
+						</ul>
+					</li>
+					<li class="developmentTools">
+						<a href="javascript:;" data-id="developmentTools">开发工具</a>
+						<ul>
+							<li><a href="javascript:;">后端</a></li>
+							<li><a href="javascript:;">前端</a></li>
+							<li><a href="javascript:;">开源</a></li>
+							<li><a href="javascript:;">GitHub</a></li>
+							<li><a href="javascript:;">Git</a></li>
+							<li><a href="javascript:;">大数据</a></li>
+							<li><a href="javascript:;">网络协议</a></li>
+							<li><a href="javascript:;">Linux</a></li>
+							<li><a href="javascript:;">Unity3D</a></li>
+							<li><a href="javascript:;">设计</a></li>
+							<li><a href="javascript:;">程序员</a></li>
+							<li><a href="javascript:;">Python</a></li>
+							<li><a href="javascript:;">JavaScript</a></li>
+							<li><a href="javascript:;">数据库</a></li>
+							<li><a href="javascript:;">架构</a></li>
+						</ul>
+					</li>
+					<li class="codeLife">
+						<a href="javascript:;" data-id="codelife">代码人生</a>
+						<ul>
+							<li><a href="javascript:;">程序员</a></li>
+							<li><a href="javascript:;">前端</a></li>
+							<li><a href="javascript:;">后端</a></li>
+							<li><a href="javascript:;">算法</a></li>
+							<li><a href="javascript:;">年终总结</a></li>
+							<li><a href="javascript:;">Python</a></li>
+							<li><a href="javascript:;">JavaScript</a></li>
+							<li><a href="javascript:;">开源</a></li>
+							<li><a href="javascript:;">面试</a></li>
+							<li><a href="javascript:;">架构</a></li>
+							<li><a href="javascript:;">数据结构</a></li>
+							<li><a href="javascript:;">大数据</a></li>
+							<li><a href="javascript:;">Linux</a></li>
+							<li><a href="javascript:;">数据库</a></li>
+						</ul>
+					</li>
+					<li class="read">
+						<a href="javascript:;" data-id="yuedu">阅读</a>
+						<ul>
+							<li><a href="javascript:;">云原生</a></li>
+							<li><a href="javascript:;">算法</a></li>
+							<li><a href="javascript:;">笔记</a></li>
+							<li><a href="javascript:;">前端</a></li>
+							<li><a href="javascript:;">后端</a></li>
+							<li><a href="javascript:;">容器</a></li>
+							<li><a href="javascript:;">Serverless</a></li>
+							<li><a href="javascript:;">Java</a></li>
+							<li><a href="javascript:;">开源</a></li>
+							<li><a href="javascript:;">微服务</a></li>
+							<li><a href="javascript:;">测试</a></li>
+							<li><a href="javascript:;">Kubernetes</a></li>
+							<li><a href="javascript:;">产品</a></li>
+							<li><a href="javascript:;">深度学习</a></li>
+							<li><a href="javascript:;">架构</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		
+		<!-- 主体内容部分 -->
+		<main>
+			<div id="main">
+				<!-- <iframe src='./header.html' marginwidth="0" marginheight="0" height="68px" width="100%" scrolling="no" frameborder="0" HSPACE=0 VSPACE=0></iframe> -->
+				<iframe id="iframe" src="scroll.html" scrolling="auto" frameborder="0" HSPACE=0 VSPACE=0 scrolling="auto"></iframe>
+
+			</div>
+		</main>
+		<div id="ajax"></div>
+	</body>
+</html>
